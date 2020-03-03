@@ -1,54 +1,46 @@
-import os
-import json
-import numpy as np
-import tensorflow as tf 
+'''Transformer Network'''
 
-def init_placeholders(self):
-# user id
-self.u = tf.placeholder(tf.int32, [None,])
+import tensorflow as tf
+from data_load import load_vocab
+from modules import get_token_embeddings, ff, positional_encoding, multihead_attention,label_smoothing, noam_scheme
+from utils import convert_idx_to_token_tensor
+from tqdm import tqdm 
+import  logging 
 
-# item id 
-self.i = tf.placeholder(tf.int32, [None,])
+logging.basicConfig(level=logging.INFO)
 
-# item label
-self.y = tf.placeholder(tf.float32, [None,])
-
-# user's history item id
-self.hist_i = tf.placeholder(tf.int32, [None, None])
-
-# user's history item purchase time
-self.hist_t  = tf.placeholder(tf.int32, [None, None])
-
-# valid length of 'hist_i'
-self.sl = tf.placeholder(tf.int32, [None,])
-
-# learning rate 
-self.lr = tf.placeholder(tf.float64, [])
-
-# whether it's training or not 
-self.is_training = tf.placeholder(tf.bool, [])
-
-def attention_net(enc, sl, dec, num_units, num_heads, num_blocks, 
-                  dropout_rate, is_training, reuse):
-  
-
-
-def  multihead_attention(queries, queries_length, keys, keys_length, 
-                         num_units=None, num_heads=8, dropout_rate=0, is_training=true,
-                         scope="multihead_attention", reuse=None):
-  '''
-  queries: A 3d tensor with shape of [N, T_q, C_q]
-  keys: A 3d tensor with shape of [N, T_k, C_k]
-  Returns
-    A 3d tensor with shape of (N, T_q, C)
-  '''
-  
-  def feedforward(inputs, num_units=[2048, 512], scope="feedforward",
-                  reuse=None):
-    '''Point-wise feed forward net.
+class Transformer:
+  def __init__(self, hp):
+    self.hp = hp
+    self.token2idx, self.idx2token = load_vocab(hp.vocab)
+    self.embeddings= get_token_embeddings(self.hp.vocab_size, self.hp.d_model, zero_pad = True)
     
-    inputs: A 3d tensor with shape of [N, T, C].
+    '''
+    xs: tuple of 
+      x: int32 tensor (N, T1)
+      x_seqlens: int32  tensor (N,)
+      sents1: str tensor (N,)
+      
+      ys: tuple of 
+        decoder_input: int32 tensor (N, T2)
+        y: int32 tensor (N, T2)
+        y_seqlen: int32  tensor (N,)
+        sents2: str tensor (N,) 
     
-    Returns:
-    A 3d tensor with the same shape and dtype as inputs
-  '''
+  def encode(self, xs, training=True):
+  '''returns  memory: encoder outputs. (N, T1, d_model)
+      
+  def decode(self, ys, memory, src_masks, training=True):
+    '''
+    memory: encoder outputs. (N, T1, d_model)
+    src_masks: (N, T1)
+    
+    Returns
+    logits: (N,T2, V). float32.
+    y_hat:(N,T2). int32.
+    y:(N,T2). int32.
+    sents2:(N,).string.
+    '''
+    
+  def train(self, xs, ys):
+  def eval(self, xs, ys): 
