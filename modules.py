@@ -2,7 +2,11 @@ import numpy as np
 import tensorflow as tf
 
 
-'''ln: layer normalization.'''
+'''ln: layer normalization.
+returns a tensor with the  same  shape and data  dtype as inputs '''
+def ln(inputs, epsilon=1e-8, scope="ln"):
+  
+  
 '''get_token_embeddings: construct  token embedding matrix. 
 returns weight variable (V, E)'''
 '''scaled_dot_product_attention: ''''
