@@ -1,1 +1,3 @@
+cd ../raw_data
+wget -c https://storage.googleapis.com/kaggle-data-sets/411512/835452/bundle/archive.zip?GoogleAccessId=web-data@kaggle-161607.iam.gserviceaccount.com&Expires=1583583820&Signature=KKBD%2FMY8h0gx%2FN4CM%2B2bv8Y%2FHpZLtYUNtVnNd3wkYvwVpUszXdR2LIm9LtWEJvALiEy0DFimIayLhzM%2FS4iPJ6esg7kCLWaQQtsMYU2szH%2BDis6PQjeoNl%2FEj798T7xv6IKHs1ZBjnWkGHRAwjN81URcKllIHi5kEiowtxNNZMfGccJDSiE%2BxdkE0h7ls48hj6aOwdIFc9pFkZZFxkh40Vcgnz%2B2eA6Zxy3E7TSjjd8AvpJ%2FVFMFg8dp1oSNv2ZGwRUhx3Z4PuM4%2FHcw5EzjCQLkOjO3j%2Fn2YjG7ISDw55Knqj9iV3cAQuZLWMylKgpsqq%2BvScptxN8wmhIpHpJmww%3D%3D&response-content-disposition=attachment%3B+filename%3Decommerce-behavior-data-from-multi-category-store.zip
 
