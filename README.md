@@ -1,5 +1,6 @@
-# ATRank_temp
-Implementation of ATRank with new dataset
+# Multi-Behavior-Recommendation-System
+- dataset contains of multi-behavior  instead of 1.
+- uses attention mechanism
 
 behavior: view, cart, remove_from_cart, purchase
 
